@@ -111,9 +111,10 @@ class API
      * then the request is rejected with an error.
      */
     private $auth = false;
-    public function addAuth(APIAuth $handler)
+    public function addAuth(APIAuth $handler, $fields=array('user', 'pass'))
     {
         $this->auth = $handler;
+        $this->authargs = $fields;
     }
     
     protected function checkAuth(APIHandler $handler)
@@ -121,13 +122,13 @@ class API
         if(!$this->auth instanceof APIAuth)
             return true;
         
-        if(!$this->getArgs(array('user', 'pass')))
+        if(!$args = $this->getArgs($this->authargs))
         {
-            $this->error("Authentication is required (user, pass)");
+            $this->error("Authentication is required (".implode(', ', $this->authargs).")");
             return;
         }
         
-        $authed = $this->auth->checkCredentials($args['user'], $args['pass'], $handler);
+        $authed = $this->auth->checkCredentials($args, $handler);
         
         if(!$authed)
         {
@@ -312,7 +313,7 @@ interface APIAuth
      * Check if the given username/pasword ID/key whatever/whatever are valid for access to the API
      * The requested handler is also passed, so tiered access can be implemented if desired
      */
-    public function checkCredentials($un, $pass, Handler $handler);
+    public function checkCredentials($args, APIHandler $handler);
 }
 
 /**
