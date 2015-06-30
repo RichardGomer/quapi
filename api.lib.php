@@ -32,11 +32,12 @@ class API
         
         $handler = $this->selectOperation($opname, $this->dataSource, $args);
 
-        
         if($handler instanceof APIHandler)
         {
-            $this->checkAuth($handler);
-            $this->runOperation($handler, $args);
+            if($this->checkAuth($handler))
+            {
+                $this->runOperation($handler, $args);
+            }
         }
         else
         {
@@ -81,7 +82,7 @@ class API
             
             $this->result($res);
         }
-        catch(Exception $ex)
+        catch(\Exception $ex)
         {
             $this->error($ex->getMessage());
         }
@@ -134,6 +135,8 @@ class API
         {
             $this->error("Authentication failed for {$args['user']}");
         }
+        
+        return true;
     }
     
     
