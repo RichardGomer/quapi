@@ -32,11 +32,12 @@ class API
         
         $handler = $this->selectOperation($opname, $this->dataSource, $args);
 
-        
         if($handler instanceof APIHandler)
         {
-            $this->checkAuth($handler);
-            $this->runOperation($handler, $args);
+            if($this->checkAuth($handler))
+            {
+                $this->runOperation($handler, $args);
+            }
         }
         else
         {
@@ -125,7 +126,7 @@ class API
         if(!$args = $this->getArgs($this->authargs))
         {
             $this->error("Authentication is required (".implode(', ', $this->authargs).")");
-            return;
+            return false;
         }
         
         $authed = $this->auth->checkCredentials($args, $handler);
@@ -133,7 +134,10 @@ class API
         if(!$authed)
         {
             $this->error("Authentication failed for {$args['user']}");
+		return false;
         }
+        
+        return true;
     }
     
     
