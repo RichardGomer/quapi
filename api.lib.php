@@ -81,7 +81,7 @@ class API
             
             $this->result($res);
         }
-        catch(Exception $ex)
+        catch(\Exception $ex)
         {
             $this->error($ex->getMessage());
         }
