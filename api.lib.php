@@ -195,7 +195,7 @@ class API
     {
         $arg = \array_key_exists($name, $this->dataSource) ? $this->dataSource[$name] : false;
 
-        $res = json_decode($arg, true, 10, JSON_BIGINT_AS_STRING);
+        $res = @json_decode($arg, true, 10);
         
         //var_Dump($name);
         //var_dump($res);
