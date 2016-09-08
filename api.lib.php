@@ -161,14 +161,13 @@ class API
             {
                 if($result instanceof $class)
                 {
-                    $result = $handler->prepareResult($result);
+                    $result = $this->prepResult($handler->prepareResult($result), $depth + 1);
                     break;
                 }
             }
         }
-        
         // Handle arrays (could be the result of the object conversion!)
-        if(is_array($result))
+        elseif(is_array($result))
         {
             foreach($result as $k=>$val)
             {
