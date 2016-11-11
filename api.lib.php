@@ -123,7 +123,7 @@ class API
         if(!$this->auth instanceof APIAuth)
             return true;
         
-        if(!$args = $this->getArgs($this->authargs))
+        if(!is_array($args = $this->getArgs($this->authargs)))
         {
             $this->error("Authentication is required (".implode(', ', $this->authargs).")");
             return false;
@@ -133,7 +133,7 @@ class API
         
         if(!$authed)
         {
-            $this->error("Authentication failed for {$args['user']}");
+            $this->error("Authentication failed");
 		return false;
         }
         
