@@ -336,6 +336,7 @@ if(array_key_exists('apiGetClient', $_GET))
     \header('Content-type: text/javascript');
     
     echo getAPIClient();
+    exit;
 }
 
 /**
