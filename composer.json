@@ -2,7 +2,7 @@
     "name": "richardgomer/quapi",
     "description": "A quick library for building HTTP APIs in PHP (and javascript)",
     "type": "library",
-    "license": "GPL",
+    "license": "GPL-3.0-or-later",
     "authors": [
         {
             "name": "Richard Gomer",
