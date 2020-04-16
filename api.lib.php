@@ -3,10 +3,10 @@
 /**
 * API-related functions
 *
-* (C) 2014 Richard Gomer
+* (C) 2014-2020 Richard Gomer
 */
 
-namespace QuickAPI;
+namespace richardgomer/quapi;
 
 
 class API
