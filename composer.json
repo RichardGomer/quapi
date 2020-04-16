@@ -1,0 +1,13 @@
+{
+    "name": "richardgomer/quapi",
+    "description": "A quick library for building HTTP APIs in PHP (and javascript)",
+    "type": "library",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Richard Gomer",
+            "email": "richard@richardgomer.co.uk"
+        }
+    ],
+    "require": {}
+}
